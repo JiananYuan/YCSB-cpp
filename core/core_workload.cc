@@ -41,14 +41,16 @@ const char *ycsbc::kOperationString[ycsbc::MAXOPTYPE] = {
 const string CoreWorkload::TABLENAME_PROPERTY = "table";
 const string CoreWorkload::TABLENAME_DEFAULT = "usertable";
 
+// changeable
 const string CoreWorkload::FIELD_COUNT_PROPERTY = "fieldcount";
-const string CoreWorkload::FIELD_COUNT_DEFAULT = "10";
+const string CoreWorkload::FIELD_COUNT_DEFAULT = "1";
 
 const string CoreWorkload::FIELD_LENGTH_DISTRIBUTION_PROPERTY = "field_len_dist";
 const string CoreWorkload::FIELD_LENGTH_DISTRIBUTION_DEFAULT = "constant";
 
+// changeable
 const string CoreWorkload::FIELD_LENGTH_PROPERTY = "fieldlength";
-const string CoreWorkload::FIELD_LENGTH_DEFAULT = "100";
+const string CoreWorkload::FIELD_LENGTH_DEFAULT = "64";
 
 const string CoreWorkload::READ_ALL_FIELDS_PROPERTY = "readallfields";
 const string CoreWorkload::READ_ALL_FIELDS_DEFAULT = "true";
@@ -74,8 +76,9 @@ const string CoreWorkload::READMODIFYWRITE_PROPORTION_DEFAULT = "0.0";
 const string CoreWorkload::REQUEST_DISTRIBUTION_PROPERTY = "requestdistribution";
 const string CoreWorkload::REQUEST_DISTRIBUTION_DEFAULT = "uniform";
 
+// changeable
 const string CoreWorkload::ZERO_PADDING_PROPERTY = "zeropadding";
-const string CoreWorkload::ZERO_PADDING_DEFAULT = "1";
+const string CoreWorkload::ZERO_PADDING_DEFAULT = "20";
 
 const string CoreWorkload::MIN_SCAN_LENGTH_PROPERTY = "minscanlength";
 const string CoreWorkload::MIN_SCAN_LENGTH_DEFAULT = "1";
@@ -216,7 +219,8 @@ std::string CoreWorkload::BuildKeyName(uint64_t key_num) {
   if (!ordered_inserts_) {
     key_num = utils::Hash(key_num);
   }
-  std::string prekey = "user";
+  // std::string prekey = "user";
+  std::string prekey = "";
   std::string value = std::to_string(key_num);
   int fill = std::max(0, zero_padding_ - static_cast<int>(value.size()));
   return prekey.append(fill, '0').append(value);
