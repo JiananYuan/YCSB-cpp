@@ -19,6 +19,8 @@
 #include <algorithm>
 #include <random>
 #include <string>
+#include <iostream>
+#include <fstream>
 
 using ycsbc::CoreWorkload;
 using std::string;
@@ -78,7 +80,7 @@ const string CoreWorkload::REQUEST_DISTRIBUTION_DEFAULT = "uniform";
 
 // changeable
 const string CoreWorkload::ZERO_PADDING_PROPERTY = "zeropadding";
-const string CoreWorkload::ZERO_PADDING_DEFAULT = "20";
+const string CoreWorkload::ZERO_PADDING_DEFAULT = "13";
 
 const string CoreWorkload::MIN_SCAN_LENGTH_PROPERTY = "minscanlength";
 const string CoreWorkload::MIN_SCAN_LENGTH_DEFAULT = "1";
@@ -215,6 +217,27 @@ ycsbc::Generator<uint64_t> *CoreWorkload::GetFieldLenGenerator(
   }
 }
 
+// std::ifstream fin("/home/yjn/Desktop/VLDB/Dataset/books/books_rand_data.csv");
+
+// std::string CoreWorkload::BuildKeyName(uint64_t key_num) {
+//   if (!ordered_inserts_) {
+//     // key_num = utils::Hash(key_num);
+//     fin >> key_num;
+//   }
+//   // std::string prekey = "user";
+//   std::string prekey = "";
+//   std::string value = std::to_string(key_num);
+//   int fill = std::max(0, zero_padding_ - static_cast<int>(value.size()));
+//   if (fill == 0) {
+//     // std::cout << value.substr(0, zero_padding_) << std::endl;
+//     return value.substr(zero_padding_);
+//   } else {
+//     // std::cout << prekey.append(fill, '0').append(value) << std::endl;
+//     return prekey.append(fill, '0').append(value);
+//   }
+// }
+
+
 std::string CoreWorkload::BuildKeyName(uint64_t key_num) {
   if (!ordered_inserts_) {
     key_num = utils::Hash(key_num);
@@ -223,7 +246,13 @@ std::string CoreWorkload::BuildKeyName(uint64_t key_num) {
   std::string prekey = "";
   std::string value = std::to_string(key_num);
   int fill = std::max(0, zero_padding_ - static_cast<int>(value.size()));
-  return prekey.append(fill, '0').append(value);
+  if (fill == 0) {
+    // std::cout << value.substr(0, zero_padding_) << std::endl;
+    return value.substr(zero_padding_);
+  } else {
+    // std::cout << prekey.append(fill, '0').append(value) << std::endl;
+    return prekey.append(fill, '0').append(value);
+  }
 }
 
 void CoreWorkload::BuildValues(std::vector<ycsbc::DB::Field> &values) {

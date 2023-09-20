@@ -51,6 +51,8 @@ void StatusThread(ycsbc::Measurements *measurements, CountDownLatch *latch, int 
 }
 
 int main(const int argc, const char *argv[]) {
+  ycsbc::utils::read_source_data();
+
   ycsbc::utils::Properties props;
   ParseCommandLine(argc, argv, props);
 
