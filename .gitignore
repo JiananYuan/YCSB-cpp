@@ -10,3 +10,8 @@ compile_commands.json
 .cache/
 .vscode
 mylog.txt
+*.xml
+.idea
+.vscode
+.vs
+HdrHistogram_c

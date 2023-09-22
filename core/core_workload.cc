@@ -86,7 +86,7 @@ const string CoreWorkload::MIN_SCAN_LENGTH_PROPERTY = "minscanlength";
 const string CoreWorkload::MIN_SCAN_LENGTH_DEFAULT = "1";
 
 const string CoreWorkload::MAX_SCAN_LENGTH_PROPERTY = "maxscanlength";
-const string CoreWorkload::MAX_SCAN_LENGTH_DEFAULT = "1000";
+const string CoreWorkload::MAX_SCAN_LENGTH_DEFAULT = "50";
 
 const string CoreWorkload::SCAN_LENGTH_DISTRIBUTION_PROPERTY = "scanlengthdistribution";
 const string CoreWorkload::SCAN_LENGTH_DISTRIBUTION_DEFAULT = "uniform";

@@ -12,9 +12,6 @@
 # workload here (which we believe is more typical of how people build systems.)
 
 recordcount=50000000
-operationcount=10000000recordcount=50000000
-operationcount=10000000recordcount=50000000
-operationcount=10000000recordcount=50000000
 operationcount=10000000
 workload=com.yahoo.ycsb.workloads.CoreWorkload
 
