@@ -14,6 +14,8 @@
 
 #include <leveldb/options.h>
 #include <leveldb/write_batch.h>
+#include <iostream>
+#include <stdio.h>
 
 namespace {
   const std::string PROP_NAME = "leveldb.dbname";
@@ -221,6 +223,7 @@ void LeveldbDB::DeserializeRow(std::vector<Field> *values, const std::string &da
     p += len;
     values->push_back({field, value});
   }
+  // values->push_back({"field1", "0000000000000000000000000000000000000000000000000000000000000000"});
   assert(values->size() == fieldcount_);
 }
 
